@@ -12,6 +12,9 @@ Book.prototype.info = function() {
 		this.pages + " pages, " + (this.read ? "read" : "not read yet");
 }
 
+document.getElementById("add-book-button").addEventListener('click',toggleAddBookMenu);
+
+
 function renderLibrary() {
     const libraryContainer = document.getElementById("library-display");
     myLibrary.forEach(element => {
@@ -21,6 +24,12 @@ function renderLibrary() {
         libraryContainer.appendChild(bookContainer);
     });
 }
+
+function toggleAddBookMenu() {
+    const menuContainer = document.getElementById("add-book-form");
+    menuContainer.classList.toggle("hidden-form");
+}
+
 
 function clearRendering() {
     while (child = document.getElementById("library-display").firstChild) {

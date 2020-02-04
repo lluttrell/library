@@ -1,0 +1,28 @@
+h1 {
+    text-align: center;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+}
+
+.hidden-form {
+    display: none;
+}
+
+.unhidden-form {
+    display: block;
+}
+
+#library-display {
+    margin: 20px auto;
+    display: block;
+    width: 600px;
+}
+
+#library-display 
+
+.book-container {
+    
+}
