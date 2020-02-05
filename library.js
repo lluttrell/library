@@ -6,6 +6,10 @@ function Book(title, author, pages, read) {
 	this.read = read;
 }
 
+Book.prototype.toggleRead = function() {
+    this.read = !this.read;
+}
+
 Book.prototype.info = function() {
 	return this.title + " by " + this.author + ", " +
 		this.pages + " pages, " + (this.read ? "read" : "not read yet");
@@ -14,19 +18,31 @@ Book.prototype.info = function() {
 function renderLibrary() {
     clearRendering();
     const libraryContainer = document.getElementById("library-display");
-    myLibrary.forEach(element => {
+    myLibrary.forEach((element, value) => {
         const bookContainer = document.createElement("div")
-        libraryContainer.appendChild(bookContainer);
         bookContainer.className = "book-container";
+        bookContainer.setAttribute("data-index-number",value);
+        libraryContainer.appendChild(bookContainer);
+        
         const bookInfo = document.createElement("p");
         bookInfo.innerHTML = element.info();
         bookContainer.appendChild(bookInfo);
+        
         const removeButton = document.createElement("button");
         removeButton.innerHTML ="remove";
-        const markReadButton = document.createElement("button")
-        markReadButton.innerHTML = "read"
-        bookContainer.appendChild(markReadButton);
+        removeButton.addEventListener('click', function() {
+            myLibrary.shift(value);
+            renderLibrary();
+        })
         bookContainer.appendChild(removeButton);
+        
+        const markReadButton = document.createElement("button");
+        markReadButton.addEventListener('click', function() {
+            element.toggleRead();
+            renderLibrary();
+        })
+        markReadButton.innerHTML = "read";
+        bookContainer.appendChild(markReadButton);
     });
 }
 
