@@ -21,8 +21,10 @@ button {
     width: 600px;
 }
 
-#library-display 
+.book-container p {
+    display: inline;
+}
 
-.book-container {
-    
+.book-container button {
+    display: inline;
 }
