@@ -1,3 +1,5 @@
+// for now simply store book objects in an array, this should ideally be in some sort of
+// database for persistence.
 let myLibrary = [];
 function Book(title, author, pages, read) {
 	this.title = title;
@@ -10,11 +12,13 @@ Book.prototype.toggleRead = function() {
     this.read = !this.read;
 }
 
+// returns a string containing information about the book
 Book.prototype.info = function() {
 	return this.title + " by " + this.author + ", " +
 		this.pages + " pages, " + (this.read ? "read" : "not read yet");
 }
 
+// adds books stored in myLibrary array to the library-display div
 function renderLibrary() {
     clearRendering();
     const libraryContainer = document.getElementById("library-display");
@@ -46,29 +50,21 @@ function renderLibrary() {
     });
 }
 
+// removes all relements from library-display div
 function clearRendering() {
     while (child = document.getElementById("library-display").firstChild) {
         document.getElementById("library-display").removeChild(child);
     }
 }
 
+// toggles between hidden and not-hidden forms.
+document.getElementById("add-book-button").addEventListener('click',toggleAddBookMenu);
 function toggleAddBookMenu() {
     const menuContainer = document.getElementById("add-book-form");
     menuContainer.classList.toggle("hidden-form");
 }
 
-function addBookToLibrary() {
-    let name = document.getElementById("name");
-    let author = document.getElementById("author");
-    let pages = document.getElementById("pages");
-    let read = document.getElementById("read");
-    myLibrary.push(new Book(name,author,pages,read));
-    clearRendering();
-    renderLibrary();
-}
-
-document.getElementById("add-book-button").addEventListener('click',toggleAddBookMenu);
-
+// window listener to update library when form submits
 window.addEventListener("load", function() {  
     const form = document.getElementById("add-book-form");
     form.addEventListener("submit", function(event) {
@@ -81,11 +77,11 @@ window.addEventListener("load", function() {
     });
 });
 
-
+// Add some books to the initial website (for testing and design purposes)
 let returnOfTheKing = new Book("Return Of the King", "J.R.R Tolkien", 198,true);
 let nineteenEighty = new Book("1984", "George Orwell", 123,true);
 myLibrary.push(returnOfTheKing, nineteenEighty);
+
 renderLibrary();
-clearRendering();
-renderLibrary();
+
 
