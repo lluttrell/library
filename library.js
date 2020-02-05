@@ -16,14 +16,17 @@ function renderLibrary() {
     const libraryContainer = document.getElementById("library-display");
     myLibrary.forEach(element => {
         const bookContainer = document.createElement("div")
-        const bookInfo = document.createElement("p");
-        const removeButton = document.createElement("button");
-        bookContainer.className = "book-container";
-        removeButton.innerHTML ="remove";
-        bookContainer.appendChild(bookInfo);
-        bookContainer.appendChild(removeButton);
-        bookInfo.innerHTML = element.info();
         libraryContainer.appendChild(bookContainer);
+        bookContainer.className = "book-container";
+        const bookInfo = document.createElement("p");
+        bookInfo.innerHTML = element.info();
+        bookContainer.appendChild(bookInfo);
+        const removeButton = document.createElement("button");
+        removeButton.innerHTML ="remove";
+        const markReadButton = document.createElement("button")
+        markReadButton.innerHTML = "read"
+        bookContainer.appendChild(markReadButton);
+        bookContainer.appendChild(removeButton);
     });
 }
 

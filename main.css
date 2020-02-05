@@ -18,13 +18,19 @@ button {
 #library-display {
     margin: 20px auto;
     display: block;
-    width: 600px;
+}
+
+.book-container {
+    display: block;
+    margin: 6px 4px;
 }
 
 .book-container p {
     display: inline;
+    margin: 0px 4px;
 }
 
 .book-container button {
     display: inline;
+    margin: 0px 4px;
 }
