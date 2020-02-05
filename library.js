@@ -1,17 +1,4 @@
-window.addEventListener("load", function() {  
-    const form = document.getElementById("add-book-form");
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
-      let formData = new FormData(form);
-      let book = new Book(formData.get('title'), formData.get('author'),
-                        formData.get('pages'), formData.get('read'));
-      myLibrary.push(book);
-      renderLibrary();
-    });
-});
-
 let myLibrary = [];
-
 function Book(title, author, pages, read) {
 	this.title = title;
 	this.author = author;
@@ -57,6 +44,19 @@ function addBookToLibrary() {
 }
 
 document.getElementById("add-book-button").addEventListener('click',toggleAddBookMenu);
+
+window.addEventListener("load", function() {  
+    const form = document.getElementById("add-book-form");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      let formData = new FormData(form);
+      let book = new Book(formData.get('title'), formData.get('author'),
+                        formData.get('pages'), formData.get('read'));
+      myLibrary.push(book);
+      renderLibrary();
+    });
+});
+
 
 let returnOfTheKing = new Book("Return Of the King", "J.R.R Tolkien", 198,true);
 let nineteenEighty = new Book("1984", "George Orwell", 123,true);
